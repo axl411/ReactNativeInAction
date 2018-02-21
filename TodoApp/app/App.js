@@ -31,7 +31,8 @@ export default class App extends Component {
       <View style={styles.container}>
         <ScrollView
           keyboardShouldPersistTaps="always"
-          style={styles.content}>
+          style={styles.content}
+        >
           <Heading/>
         </ScrollView>
       </View>
