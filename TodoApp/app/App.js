@@ -4,22 +4,26 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import Heading from './Heading';
+import React, { Component } from 'react'
+import Heading from './Heading'
 import {
   View,
   ScrollView,
-  StyleSheet
-} from 'react-native';
+  StyleSheet,
+} from 'react-native'
 
 export default class App extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       inputValue: '',
       todos: [],
-      type: 'All'
-    };
+      type: 'All',
+    }
+  }
+
+  inputChange() {
+
   }
 
   render() {
@@ -28,10 +32,10 @@ export default class App extends Component {
         <ScrollView
           keyboardShouldPersistTaps="always"
           style={styles.content}>
-          <Heading />
+          <Heading/>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -42,6 +46,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 60
-  }
-});
+    paddingTop: 60,
+  },
+})
