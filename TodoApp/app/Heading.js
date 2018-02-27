@@ -9,7 +9,7 @@ const Heading = () => {
     return (
         <View style={styles.header}>
             <Text style={styles.headerText}>
-                todos
+                todos{/**/}
         </Text>
         </View >
     );

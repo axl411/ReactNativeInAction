@@ -9,6 +9,7 @@ import Heading from './Heading'
 import Input from './Input'
 import Button from './Button'
 import TodoList from './TodoList'
+import TabBar from './TabBar'
 import {
   View,
   ScrollView,
@@ -26,6 +27,9 @@ export default class App extends Component {
       type: 'All',
     }
     this.submitTodo = this.submitTodo.bind(this)
+    this.toggleComplete = this.toggleComplete.bind(this)
+    this.deleteTodo = this.deleteTodo.bind(this)
+    this.setType = this.setType.bind(this)
   }
 
   inputChange (inputValue) {
@@ -48,22 +52,51 @@ export default class App extends Component {
       () => console.log('State: ', this.state))
   }
 
+  deleteTodo (todoIndex) {
+    let {todos} = this.state
+    todos = this.state.todos.filter((todo) => {
+      return todo.todoIndex != todoIndex
+    })
+    this.setState({todos})
+  }
+
+  toggleComplete (todoIndex) {
+    let {todos} = this.state
+    todos.forEach((todo) => {
+      if (todo.todoIndex == todoIndex) {
+        todo.complete = !todo.complete
+      }
+    })
+    this.setState({todos})
+  }
+
+  setType (type) {
+    this.setState({type})
+  }
+
   render () {
-    const {inputValue, todos} = this.state
+    const {inputValue, todos, type} = this.state
     return (
       <View style={styles.container}>
         <ScrollView
           keyboardShouldPersistTaps="always"
           style={styles.content}
+          contentInset={{top: 60, left: 0, bottom: 0, right: 0}}
         >
           <Heading/>
           <Input
             inputValue={inputValue}
             inputChange={(text) => this.inputChange(text)}
           />
-          <TodoList todos={todos}/>
+          <TodoList
+            type={type}
+            toggleComplete={this.toggleComplete}
+            deleteTodo={this.deleteTodo}
+            todos={todos}
+          />
           <Button submitTodo={this.submitTodo}/>
         </ScrollView>
+        <TabBar type={type} setType={this.setType.bind(this)} />
       </View>
     )
   }
@@ -76,6 +109,5 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 60,
   },
 })
