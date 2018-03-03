@@ -4,25 +4,35 @@
  * @flow
  */
 
-import React, { Component } from 'react'
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native'
+import React, { Component } from 'react';
+import { Image, StyleSheet, Text, View} from 'react-native';
 
 export default class App extends Component<{}> {
-  render () {
+  render() {
     return (
       <View style={styles.container}>
         <View style={styles.cardContainer}>
           <View style={styles.cardImageContainer}>
             {/*<Image style={styles.cardImage} source={require('./user.png')}/>*/}
           </View>
+          <View>
+            <Text style={styles.cardName}>
+              John Doe
+            </Text>
+          </View>
+          <View style={styles.cardOccupationContainer}>
+            <Text style={styles.cardOccupation}>
+              React Native Developer
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.cardDescription}>
+              John is a really great JavaScript developer. He loves using JS to build React Native applications for iOS and Android.
+            </Text>
+          </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -35,7 +45,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cardContainer: {
-    borderColor: 'black',    // C
+    alignItems: 'center',
+    borderColor: 'black',
     borderWidth: 3,
     borderStyle: 'solid',
     borderRadius: 20,
@@ -43,16 +54,47 @@ const styles = StyleSheet.create({
     width: 300,
     height: 400
   },
-  cardImageContainer: {   // D
+  cardImageContainer: {
+    alignItems: 'center',
     backgroundColor: 'white',
     borderWidth: 3,
     borderColor: 'black',
     width: 120,
     height: 120,
     borderRadius: 60,
+    marginTop: 30,
+    paddingTop: 15
   },
-  cardImage: {    // E
+  cardImage: {
     width: 80,
     height: 80
+  },
+  cardName: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginTop: 30,
+    textShadowColor: 'black',  // A
+    textShadowOffset: {        // B
+      height: 2,
+      width: 2
+    },
+    textShadowRadius: 3        // C
+  },
+  cardOccupationContainer: {
+    borderColor: 'black',
+    borderBottomWidth: 3
+  },
+  cardOccupation: {
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  cardDescription: {
+    fontStyle: 'italic',
+    marginTop: 10,
+    marginRight: 40,
+    marginLeft: 40,
+    marginBottom: 10
   }
 });
